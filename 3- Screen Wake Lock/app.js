@@ -40,8 +40,8 @@ function release() {
 
 //Disattivazione automatica del blocco schermo al cambio tab
 const cambiaVisibilita = document.addEventListener('visibilitychange', async () => {
-  if (screenLock !== null && document.visibilityState === 'visible') {
-    screenLock = await navigator.wakeLock.request('screen');
+  if (screenLock == null && document.visibilityState === 'visible') {
+    getScreenLock();
   }else{
     release();
   }

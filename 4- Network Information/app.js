@@ -32,12 +32,16 @@ let slowConnection = ['slow-2g', '2g'];
 let speedConnection = ['3g', '4g'];
 navigator.connection.addEventListener("change", (e) =>{
     let connection = navigator.connection,
-        effectiveType = connection.effectiveType,
-        isSlowConnection = slowConnection.indexOf(effectiveType) !== -1;
-    if(isSlowConnection) {
-        console.info("%creduce video quality", 'color: white; background-color: red');
-    } else {
-        console.info("%cmaintain or increase the video quality", 'color: white; background-color: green');
+    effectiveType = connection.effectiveType,
+    isSlowConnection = slowConnection.indexOf(effectiveType) !== -1;
+    if(!navigator.onLine){
+        console.info("%cNo internet connection", 'color: white; background-color: red');
+    }else{
+        if(isSlowConnection) {
+            console.info("%creduce video quality", 'color: white; background-color: red');
+        } else {
+            console.info("%cmaintain or increase the video quality", 'color: white; background-color: green');
+        }
     }
     chkInternetStatus();
 })

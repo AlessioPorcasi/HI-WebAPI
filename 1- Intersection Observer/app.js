@@ -13,14 +13,8 @@ function loadItems(n) {
 }
 
 var intersectionObserver = new IntersectionObserver(entries => {
-  // If the browser is busy while scrolling happens, multiple entries can
-  // accumulate between invocations of this callback. As long as any one
-  // of the notifications reports the sentinel within the scrolling viewport,
-  // we add more content.
   if (entries.some(entry => entry.intersectionRatio > 0)) {
-    loadItems(10);
-    // appendChild will move the existing element, so there is no need to
-    // remove it first.
+    loadItems(10); // appendChild will move the existing element, so there is no need to remove it first.
     scroller.appendChild(sentinel);
     loadItems(5);
     ChromeSamples.setStatus('Loaded up to item ' + counter);
